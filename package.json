@@ -1,0 +1,19 @@
+{
+  "name": "nyt-google-books",
+  "version": "1.0.0",
+  "description": "Book Google search using the New York Times",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RawKitMan/NYT-Google-Books.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RawKitMan/NYT-Google-Books/issues"
+  },
+  "homepage": "https://github.com/RawKitMan/NYT-Google-Books#readme"
+}
