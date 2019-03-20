@@ -2,9 +2,9 @@ import React from "react";
 
 function RemoveBtn(props) {
     return (
-        <span className="remove-button" {...props} role="button">
+        <button className="remove-button" {...props}>
             Remove
-    </span>
+        </button>
     );
 }
 
