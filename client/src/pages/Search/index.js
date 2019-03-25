@@ -92,6 +92,7 @@ class Search extends Component {
                                         </div>
 
                                         <p>{book.volumeInfo.description}</p>
+                                        <a className = "mr-3"  rel= "noopener noreferrer" href = {book.volumeInfo.canonicalVolumeLink} target = "_blank">Click for more Information</a>
                                         <SaveBtn onClick={() => this.saveBook(index)} />
                                     </ListItem>
                                 );

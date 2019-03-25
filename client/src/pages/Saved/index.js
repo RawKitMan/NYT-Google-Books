@@ -18,7 +18,7 @@ class Saved extends Component {
 
     loadBooks = () => {
         SavedAPI.getBooks()
-            .then(res => this.setState({ books: res.data }))
+            .then(res => {console.log(res.data); this.setState({ books: res.data })})
             .catch(err => console.log(err));
     };
 
@@ -56,6 +56,7 @@ class Saved extends Component {
                                             </div>
 
                                             <p>{book.description}</p>
+                                            <a className= "mr-3" rel = "noopener noreferrer" href = {book.link} target = "_blank">Click for more Information</a>
                                             <RemoveBtn onClick={() => this.removeBook(book._id)} />
                                         </ListItem>
                                     );
