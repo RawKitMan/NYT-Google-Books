@@ -19,7 +19,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              About
+              Search
             </Link>
           </li>
           <li className="nav-item">

@@ -4,32 +4,6 @@ import { List, ListItem } from "../../components/List";
 import SavedAPI from "../../utils/SavedAPI";
 
 
-//**************************Add this in later*************
-/* methods for class
-componentDidMount() {
-    this.loadBooks();
-};
-
-loadBooks = () => {
-        API.getBooks()
-            .then(res => this.setState({ books: res.data }))
-            .catch(err => console.log(err));
-    };
-
-    loadBooks = () => {
-        API.getBooks()
-            .then(res => this.setState({ books: res.data }))
-            .catch(err => console.log(err));
-    };
-
-    deleteBooks = id => {
-        API.deleteBook(id)
-            .then(res => this.loadBooks())
-            .catch(err => console.log(err))
-    };
-*/
-
-
 //FOr removebtn  onClick={() => this.deleteBook(book._id)
 
 class Saved extends Component {
@@ -61,20 +35,32 @@ class Saved extends Component {
                     <div className='col'>
                         {this.state.books.length ? (
                             <List>
-                            {this.state.books.map((book, index) => {
-                                return (
-                                    <ListItem key={book._id} >
-                                        <img src={book.image} alt= {book.title}></img>
-                                        <strong>
-                                            {book.title} by {book.authors.map(author => { return author + " " })}
-                                        </strong>
+                                {this.state.books.map((book) => {
+                                    return (
+                                        <ListItem key={book._id} >
+                                            <div className="d-inline-flex">
+                                                <img src={book.image} alt={book.title}></img>
+                                                <strong className = "ml-3">
+                                                    {book.title} by {book.authors.map((author, index) => {
+                                                        if (book.authors.length === 1) {
+                                                            return author
+                                                        }
+                                                        else if (index === book.authors.length - 1) {
+                                                            return ("& " + author)
+                                                        }
+                                                        else {
+                                                            return (author + ", ")
+                                                        }
+                                                    })}
+                                                </strong>
+                                            </div>
 
-                                        <p>{book.description}</p>
-                                        <RemoveBtn onClick={() => this.removeBook(book._id)}/>
-                                    </ListItem>
-                                );
-                            })}
-                        </List>) : (<h3>No Results to Display</h3>
+                                            <p>{book.description}</p>
+                                            <RemoveBtn onClick={() => this.removeBook(book._id)} />
+                                        </ListItem>
+                                    );
+                                })}
+                            </List>) : (<h3>No Results to Display</h3>
                             )}
                     </div>
                 </div>

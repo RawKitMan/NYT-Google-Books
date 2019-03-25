@@ -27,8 +27,8 @@ class Search extends Component {
         let searchTerm = this.state.search.replace(" ", "+");
         SearchAPI.getGoogleBooks(searchTerm)
             .then(res => {
-                
-                this.setState({books: res.data.items, search: ""})
+
+                this.setState({ books: res.data.items, search: "" })
             })
             .catch(err => console.log(err));
     };
@@ -45,7 +45,7 @@ class Search extends Component {
             link: book.volumeInfo.canonicalVolumeLink
 
         })
-            .then(res => this.setState({ books: this.state.books.filter((book,index) => index !== id) }))
+            .then(res => this.setState({ books: this.state.books.filter((book, index) => index !== id) }))
             .catch(err => console.log(err));
     }
 
@@ -74,13 +74,25 @@ class Search extends Component {
                             {this.state.books.map((book, index) => {
                                 return (
                                     <ListItem key={index} >
-                                        <img src={book.volumeInfo.imageLinks.thumbnail} alt= {book.volumeInfo.title}></img>
-                                        <strong>
-                                            {book.volumeInfo.title} by {book.volumeInfo.authors.map(author => { return author + " " })}
-                                        </strong>
+                                        <div className="d-inline-flex">
+                                            <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}></img>
+                                            <strong className="ml-3">
+                                                {book.volumeInfo.title} by {book.volumeInfo.authors.map((author, index) => {
+                                                    if (book.volumeInfo.authors.length === 1) {
+                                                        return author;
+                                                    }
+                                                    else if (index === book.volumeInfo.authors.length - 1) {
+                                                        return "& " + author;
+                                                    }
+                                                    else {
+                                                        return author + ", "
+                                                    }
+                                                })}
+                                            </strong>
+                                        </div>
 
                                         <p>{book.volumeInfo.description}</p>
-                                        <SaveBtn onClick={() => this.saveBook(index)}/>
+                                        <SaveBtn onClick={() => this.saveBook(index)} />
                                     </ListItem>
                                 );
                             })}
